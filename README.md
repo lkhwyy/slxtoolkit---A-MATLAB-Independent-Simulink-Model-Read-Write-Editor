@@ -226,5 +226,3 @@ status: semantic: 3   semantic=3 noise=0
 遇到问题请提交 [Issue](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/issues)。安装失败时，请附上安装窗口打印的 `SLX-INSTALL DIAGNOSTIC` 一段，或者安装目录下的 `slx-install-*.log`。
 
 <sub>MATLAB® 和 Simulink® 是 The MathWorks, Inc. 的注册商标。本项目与 MathWorks 无关联。</sub>
-#   s l x t o o l k i t - - - A - M A T L A B - I n d e p e n d e n t - S i m u l i n k - M o d e l - R e a d - W r i t e - E d i t o r  
- 

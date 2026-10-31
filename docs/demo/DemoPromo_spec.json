@@ -1,0 +1,2688 @@
+{
+ "slxwrite_build": 1,
+ "ops": [
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "ref",
+   "position": [
+    40,
+    193,
+    70,
+    207
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "fbk",
+   "position": [
+    40,
+    233,
+    70,
+    247
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "enable",
+   "position": [
+    40,
+    393,
+    70,
+    407
+   ],
+   "params": {
+    "OutDataTypeStr": "boolean",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "rst",
+   "position": [
+    40,
+    433,
+    70,
+    447
+   ],
+   "params": {
+    "OutDataTypeStr": "boolean",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_subsystem",
+   "name": "ErrCalc",
+   "position": [
+    200,
+    180,
+    320,
+    260
+   ]
+  },
+  {
+   "op": "add_subsystem",
+   "name": "Planter",
+   "position": [
+    440,
+    180,
+    560,
+    260
+   ]
+  },
+  {
+   "op": "add_subsystem",
+   "name": "OutLim",
+   "position": [
+    680,
+    180,
+    800,
+    260
+   ]
+  },
+  {
+   "op": "add_chart",
+   "name": "ModeMgr",
+   "position": [
+    920,
+    340,
+    1120,
+    500
+   ]
+  },
+  {
+   "op": "add_truth_table_block",
+   "name": "TT_Map",
+   "position": [
+    920,
+    600,
+    1020,
+    680
+   ],
+   "inputs": [
+    "enable",
+    "sat"
+   ],
+   "outputs": [
+    "hold"
+   ],
+   "conditions": [
+    {
+     "description": "使能",
+     "condition": "enable",
+     "decisions": [
+      "T",
+      "T",
+      "-"
+     ]
+    },
+    {
+     "description": "饱和",
+     "condition": "sat",
+     "decisions": [
+      "T",
+      "F",
+      "-"
+     ]
+    }
+   ],
+   "actions": [
+    {
+     "description": "保持",
+     "code": "hold = true;"
+    },
+    {
+     "description": "释放",
+     "code": "hold = false;"
+    }
+   ],
+   "decision_actions": [
+    "1",
+    "2",
+    "2"
+   ],
+   "types": {
+    "enable": "boolean",
+    "sat": "boolean",
+    "hold": "boolean"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "y",
+   "position": [
+    1240,
+    313,
+    1270,
+    327
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "mode",
+   "position": [
+    1240,
+    413,
+    1270,
+    427
+   ],
+   "params": {
+    "OutDataTypeStr": "uint8",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "hold",
+   "position": [
+    1240,
+    633,
+    1270,
+    647
+   ],
+   "params": {
+    "OutDataTypeStr": "boolean",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "u_sat",
+   "position": [
+    1240,
+    473,
+    1270,
+    487
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   }
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "ref",
+   "position": [
+    40,
+    173,
+    70,
+    187
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "fbk",
+   "position": [
+    40,
+    213,
+    70,
+    227
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Sum",
+   "name": "Sum_E",
+   "position": [
+    180,
+    160,
+    210,
+    240
+   ],
+   "params": {
+    "IconShape": "rectangular",
+    "Inputs": "+-"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "DeadZone",
+   "name": "DeadZone_E",
+   "position": [
+    300,
+    185,
+    330,
+    215
+   ],
+   "params": {
+    "LowerValue": "-0.0625",
+    "UpperValue": "0.0625"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Abs",
+   "name": "Abs_E",
+   "position": [
+    420,
+    185,
+    450,
+    215
+   ],
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Constant",
+   "name": "Const_Th",
+   "position": [
+    300,
+    285,
+    340,
+    315
+   ],
+   "params": {
+    "Value": "0.75",
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "RelationalOperator",
+   "name": "Rel_Big",
+   "position": [
+    540,
+    160,
+    570,
+    240
+   ],
+   "params": {
+    "Operator": ">=",
+    "InputSameDT": "on"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Gain",
+   "name": "Gain_P",
+   "position": [
+    420,
+    300,
+    450,
+    330
+   ],
+   "params": {
+    "Gain": "Kp",
+    "OutDataTypeStr": "single"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Gain",
+   "name": "Gain_P2",
+   "position": [
+    420,
+    400,
+    450,
+    430
+   ],
+   "params": {
+    "Gain": "Kp2",
+    "OutDataTypeStr": "single"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_subsystem",
+   "name": "Integrator",
+   "position": [
+    420,
+    500,
+    540,
+    580
+   ],
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Gain",
+   "name": "Gain_I",
+   "position": [
+    660,
+    525,
+    690,
+    555
+   ],
+   "params": {
+    "Gain": "Ki",
+    "OutDataTypeStr": "single"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Switch",
+   "name": "Switch_FF",
+   "position": [
+    660,
+    160,
+    700,
+    280
+   ],
+   "params": {
+    "Criteria": "u2 ~= 0",
+    "Threshold": "0",
+    "InputSameDT": "on"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Sum",
+   "name": "Sum_Out",
+   "position": [
+    780,
+    180,
+    810,
+    260
+   ],
+   "params": {
+    "IconShape": "rectangular",
+    "Inputs": "++"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "DataTypeConversion",
+   "name": "Conv_Out",
+   "position": [
+    900,
+    205,
+    940,
+    235
+   ],
+   "params": {
+    "OutDataTypeStr": "single"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "err",
+   "position": [
+    1020,
+    213,
+    1050,
+    227
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "ErrCalc"
+  },
+  {
+   "op": "connect",
+   "src": "ref",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Sum_E",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "fbk",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Sum_E",
+     "port": 2
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sum_E",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "DeadZone_E",
+     "port": 1
+    },
+    {
+     "block": "Integrator",
+     "port": 1,
+     "points": [
+      [
+       0,
+       340
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     40,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "DeadZone_E",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Abs_E",
+     "port": 1
+    },
+    {
+     "block": "Gain_P",
+     "port": 1,
+     "points": [
+      [
+       0,
+       115
+      ]
+     ]
+    },
+    {
+     "block": "Gain_P2",
+     "port": 1,
+     "points": [
+      [
+       0,
+       215
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     40,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Abs_E",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Rel_Big",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     40,
+     0
+    ],
+    [
+     0,
+     -20
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Const_Th",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Rel_Big",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     125,
+     0
+    ],
+    [
+     0,
+     -80
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Gain_P",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Switch_FF",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     145,
+     0
+    ],
+    [
+     0,
+     -135
+    ],
+    [
+     45,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Rel_Big",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Switch_FF",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     45,
+     0
+    ],
+    [
+     0,
+     20
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Gain_P2",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Switch_FF",
+     "port": 3
+    }
+   ],
+   "points": [
+    [
+     165,
+     0
+    ],
+    [
+     0,
+     -155
+    ],
+    [
+     25,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Switch_FF",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Sum_Out",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     45,
+     0
+    ],
+    [
+     0,
+     -20
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Integrator",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Gain_I",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Gain_I",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Sum_Out",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     45,
+     0
+    ],
+    [
+     0,
+     -300
+    ],
+    [
+     35,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sum_Out",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "Conv_Out",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Conv_Out",
+   "system": "ErrCalc",
+   "dst": [
+    {
+     "block": "err",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "e",
+   "position": [
+    40,
+    173,
+    70,
+    187
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "add_block",
+   "type": "Sum",
+   "name": "Sum_I",
+   "position": [
+    200,
+    160,
+    230,
+    240
+   ],
+   "params": {
+    "IconShape": "rectangular",
+    "Inputs": "++"
+   },
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "add_block",
+   "type": "Saturate",
+   "name": "Sat_I",
+   "position": [
+    340,
+    185,
+    370,
+    215
+   ],
+   "params": {
+    "UpperLimit": "2.0",
+    "LowerLimit": "-2.0"
+   },
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "add_block",
+   "type": "UnitDelay",
+   "name": "UD_I",
+   "position": [
+    480,
+    185,
+    510,
+    215
+   ],
+   "params": {
+    "InitialCondition": "0",
+    "SampleTime": "-1"
+   },
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "i",
+   "position": [
+    620,
+    193,
+    650,
+    207
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "connect",
+   "src": "e",
+   "system": "ErrCalc/Integrator",
+   "dst": [
+    {
+     "block": "Sum_I",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sum_I",
+   "system": "ErrCalc/Integrator",
+   "dst": [
+    {
+     "block": "Sat_I",
+     "port": 1
+    },
+    {
+     "block": "i",
+     "port": 1,
+     "points": [
+      [
+       0,
+       100
+      ],
+      [
+       275,
+       0
+      ],
+      [
+       0,
+       -100
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     100,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sat_I",
+   "system": "ErrCalc/Integrator",
+   "dst": [
+    {
+     "block": "UD_I",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "UD_I",
+   "system": "ErrCalc/Integrator",
+   "dst": [
+    {
+     "block": "Sum_I",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     15,
+     0
+    ],
+    [
+     0,
+     80
+    ],
+    [
+     -345,
+     0
+    ],
+    [
+     0,
+     -60
+    ]
+   ]
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "u",
+   "position": [
+    40,
+    173,
+    70,
+    187
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Sum",
+   "name": "Sum_P",
+   "position": [
+    200,
+    160,
+    230,
+    240
+   ],
+   "params": {
+    "IconShape": "rectangular",
+    "Inputs": "+-"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Gain",
+   "name": "Gain_B",
+   "position": [
+    340,
+    185,
+    370,
+    215
+   ],
+   "params": {
+    "Gain": "0.75",
+    "OutDataTypeStr": "single"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Saturate",
+   "name": "Sat_P",
+   "position": [
+    480,
+    185,
+    510,
+    215
+   ],
+   "params": {
+    "UpperLimit": "1.0",
+    "LowerLimit": "-1.0"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "UnitDelay",
+   "name": "UD_Y",
+   "position": [
+    620,
+    185,
+    650,
+    215
+   ],
+   "params": {
+    "InitialCondition": "0",
+    "SampleTime": "-1"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Goto",
+   "name": "Goto_FBy",
+   "position": [
+    760,
+    250,
+    820,
+    270
+   ],
+   "params": {
+    "GotoTag": "FB_y",
+    "TagVisibility": "local"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "From",
+   "name": "From_FBy",
+   "position": [
+    200,
+    320,
+    260,
+    340
+   ],
+   "params": {
+    "GotoTag": "FB_y"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Gain",
+   "name": "Gain_A",
+   "position": [
+    320,
+    315,
+    350,
+    345
+   ],
+   "params": {
+    "Gain": "0.25",
+    "OutDataTypeStr": "single"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "UnitDelay",
+   "name": "UD_Y2",
+   "position": [
+    420,
+    315,
+    450,
+    345
+   ],
+   "params": {
+    "InitialCondition": "0",
+    "SampleTime": "-1"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "y",
+   "position": [
+    900,
+    193,
+    930,
+    207
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "Planter"
+  },
+  {
+   "op": "connect",
+   "src": "u",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "Sum_P",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sum_P",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "Gain_B",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Gain_B",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "Sat_P",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sat_P",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "UD_Y",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "UD_Y",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "y",
+     "port": 1,
+     "points": [
+      [
+       0,
+       0
+      ]
+     ]
+    },
+    {
+     "block": "Goto_FBy",
+     "port": 1,
+     "points": [
+      [
+       0,
+       60
+      ],
+      [
+       35,
+       0
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     65,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "From_FBy",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "Gain_A",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Gain_A",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "UD_Y2",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "UD_Y2",
+   "system": "Planter",
+   "dst": [
+    {
+     "block": "Sum_P",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     15,
+     0
+    ],
+    [
+     0,
+     70
+    ],
+    [
+     -315,
+     0
+    ],
+    [
+     0,
+     -180
+    ]
+   ]
+  },
+  {
+   "op": "add_block",
+   "type": "Inport",
+   "name": "y",
+   "position": [
+    40,
+    173,
+    70,
+    187
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Saturate",
+   "name": "Sat_L",
+   "position": [
+    200,
+    165,
+    230,
+    195
+   ],
+   "params": {
+    "UpperLimit": "0.5",
+    "LowerLimit": "-0.5"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Constant",
+   "name": "Const_Hi",
+   "position": [
+    200,
+    300,
+    240,
+    330
+   ],
+   "params": {
+    "Value": "0.25",
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Constant",
+   "name": "Const_Lo",
+   "position": [
+    200,
+    400,
+    240,
+    430
+   ],
+   "params": {
+    "Value": "-0.25",
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "RelationalOperator",
+   "name": "Rel_Hi",
+   "position": [
+    340,
+    140,
+    370,
+    220
+   ],
+   "params": {
+    "Operator": ">=",
+    "InputSameDT": "on"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "RelationalOperator",
+   "name": "Rel_Lo",
+   "position": [
+    340,
+    280,
+    370,
+    360
+   ],
+   "params": {
+    "Operator": "<=",
+    "InputSameDT": "on"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Logic",
+   "name": "Or_At",
+   "position": [
+    480,
+    200,
+    510,
+    280
+   ],
+   "params": {
+    "Operator": "OR",
+    "Inputs": "2",
+    "IconShape": "rectangular"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "sat",
+   "position": [
+    620,
+    193,
+    650,
+    207
+   ],
+   "params": {
+    "OutDataTypeStr": "boolean",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "add_block",
+   "type": "Outport",
+   "name": "y_sat",
+   "position": [
+    620,
+    313,
+    650,
+    327
+   ],
+   "params": {
+    "OutDataTypeStr": "single",
+    "SampleTime": "-1",
+    "PortDimensions": "1"
+   },
+   "system": "OutLim"
+  },
+  {
+   "op": "connect",
+   "src": "y",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Sat_L",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Sat_L",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Rel_Hi",
+     "port": 1,
+     "points": [
+      [
+       0,
+       -20
+      ]
+     ]
+    },
+    {
+     "block": "Rel_Lo",
+     "port": 1,
+     "points": [
+      [
+       0,
+       120
+      ]
+     ]
+    },
+    {
+     "block": "y_sat",
+     "port": 1,
+     "points": [
+      [
+       0,
+       280
+      ],
+      [
+       330,
+       0
+      ],
+      [
+       0,
+       -140
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     40,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Const_Hi",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Rel_Hi",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     55,
+     0
+    ],
+    [
+     0,
+     -115
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Const_Lo",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Rel_Lo",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     55,
+     0
+    ],
+    [
+     0,
+     -75
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Rel_Hi",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Or_At",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     45,
+     0
+    ],
+    [
+     0,
+     40
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Rel_Lo",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "Or_At",
+     "port": 2
+    }
+   ],
+   "points": [
+    [
+     45,
+     0
+    ],
+    [
+     0,
+     -60
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Or_At",
+   "system": "OutLim",
+   "dst": [
+    {
+     "block": "sat",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     70,
+     0
+    ],
+    [
+     0,
+     -20
+    ]
+   ]
+  },
+  {
+   "op": "add_mask",
+   "block": "ErrCalc",
+   "Type": "PI Error Calc",
+   "Display": "disp('PI error: deadband -> Kp/Kp2 boost -> + Ki integral')",
+   "Description": "比例 / 积分误差计算（含死区与大误差增益切换），Kp / Kp2 / Ki 由掩码参数给定",
+   "parameters": [
+    {
+     "name": "Kp",
+     "prompt": "比例增益 Kp",
+     "value": "1.5"
+    },
+    {
+     "name": "Kp2",
+     "prompt": "大误差增益 Kp2",
+     "value": "3.0"
+    },
+    {
+     "name": "Ki",
+     "prompt": "积分增益 Ki",
+     "value": "0.25"
+    }
+   ],
+   "dialog": [
+    {
+     "type": "group",
+     "name": "G_Gain",
+     "prompt": "PI 增益",
+     "children": [
+      {
+       "type": "text",
+       "name": "T_Info",
+       "prompt": "仅标定用，运行期不可调"
+      },
+      {
+       "param": "Kp"
+      },
+      {
+       "param": "Kp2"
+      },
+      {
+       "param": "Ki"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "ref",
+   "dst": [
+    {
+     "block": "ErrCalc",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "fbk",
+   "dst": [
+    {
+     "block": "ErrCalc",
+     "port": 2
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "ErrCalc",
+   "dst": [
+    {
+     "block": "Planter",
+     "port": 1
+    },
+    {
+     "block": "ModeMgr",
+     "port": 1,
+     "points": [
+      [
+       0,
+       80
+      ],
+      [
+       530,
+       0
+      ],
+      [
+       0,
+       60
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     25,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "Planter",
+   "dst": [
+    {
+     "block": "OutLim",
+     "port": 1
+    },
+    {
+     "block": "y",
+     "port": 1,
+     "points": [
+      [
+       0,
+       100
+      ],
+      [
+       605,
+       0
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     55,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "OutLim",
+   "src_port": 1,
+   "dst": [
+    {
+     "block": "ModeMgr",
+     "port": 3,
+     "points": [
+      [
+       0,
+       240
+      ]
+     ]
+    },
+    {
+     "block": "TT_Map",
+     "port": 2,
+     "points": [
+      [
+       0,
+       460
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     55,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "OutLim",
+   "src_port": 2,
+   "dst": [
+    {
+     "block": "u_sat",
+     "port": 1
+    }
+   ],
+   "points": [
+    [
+     35,
+     0
+    ],
+    [
+     0,
+     280
+    ],
+    [
+     385,
+     0
+    ],
+    [
+     0,
+     -40
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "enable",
+   "dst": [
+    {
+     "block": "ModeMgr",
+     "port": 2
+    },
+    {
+     "block": "TT_Map",
+     "port": 1,
+     "points": [
+      [
+       0,
+       220
+      ]
+     ]
+    }
+   ],
+   "points": [
+    [
+     815,
+     0
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "rst",
+   "dst": [
+    {
+     "block": "ModeMgr",
+     "port": 4
+    }
+   ],
+   "points": [
+    [
+     745,
+     0
+    ],
+    [
+     0,
+     40
+    ]
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "ModeMgr",
+   "dst": [
+    {
+     "block": "mode",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "connect",
+   "src": "TT_Map",
+   "dst": [
+    {
+     "block": "hold",
+     "port": 1
+    }
+   ]
+  },
+  {
+   "op": "set_signal_name",
+   "src": "ModeMgr",
+   "dst": "mode",
+   "name": "mode"
+  },
+  {
+   "op": "set_signal_name",
+   "src": "TT_Map",
+   "dst": "hold",
+   "name": "hold"
+  },
+  {
+   "op": "set_signal_name",
+   "src": "ref",
+   "dst": "ErrCalc",
+   "name": "ref"
+  },
+  {
+   "op": "set_signal_name",
+   "src": "ErrCalc",
+   "dst": "Planter",
+   "name": "err"
+  },
+  {
+   "op": "set_signal_name",
+   "src": "Planter",
+   "dst": "OutLim",
+   "name": "y"
+  },
+  {
+   "op": "set_signal_name",
+   "src": "enable",
+   "dst": "TT_Map",
+   "name": "enable"
+  },
+  {
+   "op": "add_data",
+   "chart": "ModeMgr",
+   "name": "err",
+   "scope": "Input",
+   "type": "single",
+   "size": "1"
+  },
+  {
+   "op": "add_data",
+   "chart": "ModeMgr",
+   "name": "enable",
+   "scope": "Input",
+   "type": "boolean",
+   "size": "1"
+  },
+  {
+   "op": "add_data",
+   "chart": "ModeMgr",
+   "name": "sat",
+   "scope": "Input",
+   "type": "boolean",
+   "size": "1"
+  },
+  {
+   "op": "add_data",
+   "chart": "ModeMgr",
+   "name": "rst",
+   "scope": "Input",
+   "type": "boolean",
+   "size": "1"
+  },
+  {
+   "op": "add_data",
+   "chart": "ModeMgr",
+   "name": "mode",
+   "scope": "Output",
+   "type": "uint8",
+   "size": "1"
+  },
+  {
+   "op": "add_state",
+   "chart": "ModeMgr",
+   "label": "Idle\nen: mode = uint8(0);",
+   "position": [
+    193,
+    102,
+    1534,
+    850
+   ]
+  },
+  {
+   "op": "add_state",
+   "chart": "ModeMgr",
+   "label": "Run\nen: mode = uint8(1);",
+   "position": [
+    1906,
+    102,
+    1534,
+    850
+   ]
+  },
+  {
+   "op": "add_state",
+   "chart": "ModeMgr",
+   "label": "Fault\nen: mode = uint8(2);",
+   "position": [
+    3573,
+    375,
+    454,
+    304
+   ]
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "J_Ret",
+   "center": [
+    2673,
+    1030
+   ]
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "J_Back",
+   "center": [
+    960,
+    1030
+   ]
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "J_F",
+   "center": [
+    3800,
+    1090
+   ]
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "J_B2",
+   "center": [
+    960,
+    1090
+   ]
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "dst": "Idle"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "Idle",
+   "dst": "Run",
+   "label": "[enable]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "Run",
+   "dst": "J_Ret",
+   "label": "[enable == false]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "J_Ret",
+   "dst": "J_Back"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "J_Back",
+   "dst": "Idle"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "Run",
+   "dst": "Fault",
+   "label": "[sat]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "Fault",
+   "dst": "J_F",
+   "label": "[rst]{mode = uint8(0);}"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "J_F",
+   "dst": "J_B2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "J_B2",
+   "dst": "J_Back"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "ID0",
+   "center": [
+    240,
+    190
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IA0",
+   "center": [
+    600,
+    190
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IB0",
+   "center": [
+    240,
+    320
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IM0",
+   "center": [
+    600,
+    320
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "ID1",
+   "center": [
+    600,
+    385
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IA1",
+   "center": [
+    960,
+    385
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IB1",
+   "center": [
+    600,
+    515
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IM1",
+   "center": [
+    960,
+    515
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "ID2",
+   "center": [
+    960,
+    580
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IA2",
+   "center": [
+    1320,
+    580
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IB2",
+   "center": [
+    960,
+    710
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IM2",
+   "center": [
+    1320,
+    710
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "ID3",
+   "center": [
+    1320,
+    775
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IA3",
+   "center": [
+    1680,
+    775
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IB3",
+   "center": [
+    1320,
+    905
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "IM3",
+   "center": [
+    1680,
+    905
+   ],
+   "parent": "Idle"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "dst": "ID0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID0",
+   "dst": "IA0",
+   "label": "[err < 0.10]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID0",
+   "dst": "IB0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IA0",
+   "dst": "IM0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IB0",
+   "dst": "IM0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IM0",
+   "dst": "ID1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID1",
+   "dst": "IA1",
+   "label": "[err < 0.20]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID1",
+   "dst": "IB1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IA1",
+   "dst": "IM1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IB1",
+   "dst": "IM1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IM1",
+   "dst": "ID2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID2",
+   "dst": "IA2",
+   "label": "[err < 0.35]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID2",
+   "dst": "IB2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IA2",
+   "dst": "IM2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IB2",
+   "dst": "IM2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IM2",
+   "dst": "ID3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID3",
+   "dst": "IA3",
+   "label": "[err < 0.50]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "ID3",
+   "dst": "IB3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IA3",
+   "dst": "IM3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "IB3",
+   "dst": "IM3"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KD0",
+   "center": [
+    1953,
+    190
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KA0",
+   "center": [
+    2313,
+    190
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KB0",
+   "center": [
+    1953,
+    320
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KM0",
+   "center": [
+    2313,
+    320
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KD1",
+   "center": [
+    2313,
+    385
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KA1",
+   "center": [
+    2673,
+    385
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KB1",
+   "center": [
+    2313,
+    515
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KM1",
+   "center": [
+    2673,
+    515
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KD2",
+   "center": [
+    2673,
+    580
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KA2",
+   "center": [
+    3033,
+    580
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KB2",
+   "center": [
+    2673,
+    710
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KM2",
+   "center": [
+    3033,
+    710
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KD3",
+   "center": [
+    3033,
+    775
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KA3",
+   "center": [
+    3393,
+    775
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KB3",
+   "center": [
+    3033,
+    905
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "KM3",
+   "center": [
+    3393,
+    905
+   ],
+   "parent": "Run"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "dst": "KD0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD0",
+   "dst": "KA0",
+   "label": "[err < 0.60]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD0",
+   "dst": "KB0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KA0",
+   "dst": "KM0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KB0",
+   "dst": "KM0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KM0",
+   "dst": "KD1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD1",
+   "dst": "KA1",
+   "label": "[err < 0.70]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD1",
+   "dst": "KB1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KA1",
+   "dst": "KM1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KB1",
+   "dst": "KM1"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KM1",
+   "dst": "KD2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD2",
+   "dst": "KA2",
+   "label": "[err < 0.80]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD2",
+   "dst": "KB2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KA2",
+   "dst": "KM2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KB2",
+   "dst": "KM2"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KM2",
+   "dst": "KD3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD3",
+   "dst": "KA3",
+   "label": "[err < 0.90]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KD3",
+   "dst": "KB3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KA3",
+   "dst": "KM3"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "KB3",
+   "dst": "KM3"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "FD0",
+   "center": [
+    3620,
+    462
+   ],
+   "parent": "Fault"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "FA0",
+   "center": [
+    3980,
+    462
+   ],
+   "parent": "Fault"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "FB0",
+   "center": [
+    3620,
+    592
+   ],
+   "parent": "Fault"
+  },
+  {
+   "op": "add_junction",
+   "chart": "ModeMgr",
+   "name": "FM0",
+   "center": [
+    3980,
+    592
+   ],
+   "parent": "Fault"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "dst": "FD0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "FD0",
+   "dst": "FA0",
+   "label": "[err < 0]"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "FD0",
+   "dst": "FB0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "FA0",
+   "dst": "FM0"
+  },
+  {
+   "op": "add_transition",
+   "chart": "ModeMgr",
+   "src": "FB0",
+   "dst": "FM0"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    40,
+    40,
+    700,
+    114
+   ],
+   "text": "[Function] 闭环控制 + 模式管理 综合演示（slxtoolkit 离线生成）\n[Req] DEMO-04 多级子系统 / 掩码 / Goto-From / 真值表 / 三态状态机（状态内级联判定菱形）\n[I/O] in: ref, fbk, enable, rst -> out: y, mode, hold, u_sat\n[Notes] ErrCalc(死区+双增益切换+积分)；Planter(二阶, Goto/From 反馈)；OutLim(上下限判定)；ModeMgr(Idle/Run/Fault)；TT_Map(真值表)"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    40,
+    40,
+    620,
+    114
+   ],
+   "text": "[Function] PI 误差计算：e = ref - fbk -> 死区 -> Kp / Kp2 切换 -> + Ki*积分\n[I/O] in: ref, fbk -> out: err\n[Notes] 掩码参数 Kp / Kp2 / Ki；|e| >= 0.75 时切到大增益；积分环在子子系统 Integrator 内（含饱和）",
+   "system": "ErrCalc"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    40,
+    40,
+    520,
+    114
+   ],
+   "text": "[Function] 离散积分（带饱和）：i = sat(e + i_prev, ±2)\n[I/O] in: e -> out: i\n[Notes] UnitDelay 承担状态；反馈线经下方回绕",
+   "system": "ErrCalc/Integrator"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    40,
+    40,
+    620,
+    114
+   ],
+   "text": "[Function] 二阶被控对象：y = sat((u - 0.25*y2_prev) * 0.75)\n[I/O] in: u -> out: y\n[Notes] 反馈边用 Goto(FB_y) / From(FB_y) 闭合；UD_Y 为主状态，UD_Y2 为二阶状态",
+   "system": "Planter"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    40,
+    40,
+    560,
+    114
+   ],
+   "text": "[Function] 上下限判定：sat = (y >= +0.25) || (y <= -0.25)\n[I/O] in: y -> out: sat, y_sat\n[Notes] y_sat 为限幅后的输出（±0.5）；两路阈值比较经 OR 合并",
+   "system": "OutLim"
+  },
+  {
+   "op": "add_annotation",
+   "fixed": true,
+   "position": [
+    920,
+    720,
+    1580,
+    800
+   ],
+   "text": "[Function] 三态模式管理：Idle / Run / Fault\n[Req] 每个状态内为 4 级级联判定菱形（D -> A/B -> M），共 16 个 junction / 20 条转移\n[I/O] in: err, enable, sat, rst -> out: mode\n[Notes] 真支向右、假支向下，A/B 在 M 汇合后再进入下一级；两条回环经 J_Ret/J_Back 与 J_F/J_B2"
+  }
+ ]
+}
