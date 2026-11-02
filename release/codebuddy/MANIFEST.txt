@@ -2,16 +2,16 @@ slxtoolkit 交付清单
 ============================================================
 宿主：CodeBuddy
 target：codebuddy
-版本：1.2.3
-BuildId：5e5a746277b34861918988735358a427
-构建日期：2026-10-25
-源插件 HEAD：4fcd6aeeeabcd8afe969f0c8bf860e8d2ae9d10b
+版本：1.2.6
+BuildId：b414d2604eff4aec9405f555cf7722fe
+构建日期：2026-11-02
+源插件 HEAD：3f898d63fc9417dfa5fecd89945f4fdb94169b80
 源工作树有改动：False
-有效期：2026-10-25 至 2026-12-25（含当日，2 个月）
+有效期：2026-11-02 至 2027-01-02（含当日，2 个月）
 代码签名：未签名
-打包日期：2026-10-25
+打包日期：2026-11-02
 
 发货方式：把本目录整个发给收件人
 ------------------------------------------------------------
-INSTALL.md                            8.1 KB  ba05a403a5d31ae2d9fd2b08ea173042f97ffd9ce84ce226eff39be897722ac8
-slx-tools-codebuddy.zip           54384.3 KB  aa3d4c81105dc2f376c95f31ee8aae318fbbaa7e04d6e8efa4b1d6ae462fa8d8
+INSTALL.md                            8.1 KB  2f34dc771ae139ed4e40e655fa6511974d8f33010eb4fbeddfe3e5ba78f80266
+slx-tools-codebuddy.zip           54414.0 KB  f4513c9f9ab93e28f58aabb6f9c46c3d91d6c33f81d67986866a3071a0783112

@@ -101,9 +101,12 @@ slxtoolkit 把 `.slx` 变成 AI 能读、能写的东西：你用自然语言提
   BlockType: Chart
   expression: mode = Chart(err, enable, sat, rst) where err=blk_5.err, enable=blk_3.y1, sat=blk_7.sat, rst=blk_4.y1
   states:
-    - sf_8:6 Idle [OR_STATE]   en: mode = uint8(0);
-    - sf_8:7 Run [OR_STATE]    en: mode = uint8(1);
-    - sf_8:8 Fault [OR_STATE]  en: mode = uint8(2);
+    - sf_8:6 Idle [OR_STATE] [subchart]
+        en: mode = uint8(0);
+    - sf_8:7 Run [OR_STATE] [subchart]
+        en: mode = uint8(1);
+    - sf_8:8 Fault [OR_STATE] [subchart]
+        en: mode = uint8(2);
   transitions:
     - sf_8:14 sf_8:6 -> sf_8:7 [enable] (order 1)
     - sf_8:18 sf_8:7 -> sf_8:8 [sat] (order 2)
@@ -124,7 +127,7 @@ slxtoolkit 把 `.slx` 变成 AI 能读、能写的东西：你用自然语言提
 
 `slx_view` 把整个模型渲染成**一个 HTML 文件**，用浏览器打开就能看：
 
-- 左侧层级树，**双击**块就能进入子系统或 Stateflow 图表
+- 左侧层级树，**双击**块就能进入子系统、Stateflow 图表及其子图（subchart）
 - **单击**块查看参数，每项都标明来源：显式设置（explicit）、默认值（default）或推出值（derived）
 - 滚轮缩放、拖拽平移；块名、注释、信号名可以一键开关
 - 不依赖网络，自动适配深色模式
@@ -133,6 +136,11 @@ slxtoolkit 把 `.slx` 变成 AI 能读、能写的东西：你用自然语言提
 
 <p align="center">
   <img src="docs/images/html-view.png" alt="slx_view 生成的 HTML 视图" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/images/html-view2.png" alt="HTML 视图中的 ModeMgr 状态图" width="100%">
+  <br><sub>↑ 进入 ModeMgr：Idle / Run / Fault 三个子图，双击继续进入子图内部</sub>
 </p>
 
 👉 **[在线打开 DemoPromo 的 HTML 视图](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)**（也可以下载 [DemoPromo.html](docs/demo/DemoPromo.html) 到本地，用浏览器打开）
@@ -172,10 +180,10 @@ status: semantic: 3   semantic=3 noise=0
 
 | 你用的工具 | 下载 | 安装说明 |
 |---|---|---|
-| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL.md](release/claude/INSTALL.md) |
-| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL.md](release/codex/INSTALL.md) |
-| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL.md](release/codebuddy/INSTALL.md) |
-| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL.md](release/qoder/INSTALL.md) |
+| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL-claude.md](release/claude/INSTALL-claude.md) |
+| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL-codex.md](release/codex/INSTALL-codex.md) |
+| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL-codebuddy.md](release/codebuddy/INSTALL-codebuddy.md) |
+| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL-qoder.md](release/qoder/INSTALL-qoder.md) |
 
 四个包里的文件夹名相同，**只能靠 zip 文件名区分**，下载前请对一眼。
 
@@ -219,7 +227,7 @@ status: semantic: 3   semantic=3 noise=0
 
 ## 版本与有效期
 
-当前版本 **1.2.3**，构建日期 2026-10-25，**有效期至 2026-12-25**。到期后插件停止工作，并在你退出 AI 工具后自动卸载，详见各平台 INSTALL.md 第八节。新版本会发布在 [Releases](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases)。
+当前版本 **1.2.6**，构建日期 2026-11-02，**有效期至 2027-01-02**。到期后插件停止工作，并在你退出 AI 工具后自动卸载，详见对应平台安装说明（`INSTALL-<平台>.md`）第八节。新版本会发布在 [Releases](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases)。
 
 ## 反馈
 
