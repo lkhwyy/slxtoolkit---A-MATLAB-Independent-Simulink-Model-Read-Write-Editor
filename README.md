@@ -143,7 +143,7 @@ slxtoolkit 把 `.slx` 变成 AI 能读、能写的东西：你用自然语言提
   <br><sub>↑ 进入 ModeMgr：Idle / Run / Fault 三个子图，双击继续进入子图内部</sub>
 </p>
 
-👉 **[在线打开 DemoPromo 的 HTML 视图](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)**（也可以下载 [DemoPromo.html](docs/demo/DemoPromo.html) 到本地，用浏览器打开）
+👉 **[在线打开 DemoPromo 的 HTML 视图](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)**（也可以打开 [DemoPromo.html](docs/demo/DemoPromo.html)，点右上角的 **Download raw file** 按钮下载到本地，再用浏览器打开）
 
 ### ④ 一句话改模型，语义 diff 一眼看清
 

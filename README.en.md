@@ -142,7 +142,7 @@ It's handy for colleagues without MATLAB or for attaching to a review.
   <br><sub>↑ Inside ModeMgr: the Idle, Run and Fault subcharts; double-click one to step inside</sub>
 </p>
 
-👉 **[Open the DemoPromo HTML view online](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)** (or download [DemoPromo.html](docs/demo/DemoPromo.html) and open it locally)
+👉 **[Open the DemoPromo HTML view online](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)** (or open [DemoPromo.html](docs/demo/DemoPromo.html), click **Download raw file** at the top right, and open the downloaded file in your browser)
 
 ### ④ Edit in one sentence, verify with a semantic diff
 
