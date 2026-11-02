@@ -188,9 +188,9 @@ The four packages contain identically named folders, so **only the zip file name
 
 **Three steps:**
 
-1. Unzip to a permanent location (don't move it afterwards), e.g. `C:\Users\<you>\slx-tools`
-2. Double-click `install.cmd` inside it (no admin rights needed; no environment variables are changed)
-3. Fully quit and restart your AI tool
+1. Unzip to a permanent location (don't move it afterwards), e.g. `C:\Users\<you>\slx-tools`.
+2. Double-click `install.cmd` inside it (no admin rights needed; no environment variables are changed).
+3. Fully quit and restart your AI tool.
 
 **Then try:**
 
