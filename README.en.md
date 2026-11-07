@@ -4,7 +4,7 @@
 
 **Let your AI agent read, build and edit Simulink models — no MATLAB required**
 
-[![Release](https://img.shields.io/github/v/release/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor?label=release)](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest)
+[![Release](https://img.shields.io/github/v/release/lkhwyy/slxtoolkit---simulink-read-write-mcp?label=release)](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011%20x64-0078d4)
 ![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%7C%20Codex%20%7C%20CodeBuddy%20%7C%20Qoder-6f42c1)
 ![Python](https://img.shields.io/badge/Python-not%20required-success)
@@ -142,7 +142,7 @@ It's handy for colleagues without MATLAB or for attaching to a review.
   <br><sub>↑ Inside ModeMgr: the Idle, Run and Fault subcharts; double-click one to step inside</sub>
 </p>
 
-👉 **[Open the DemoPromo HTML view online](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)** (or open [DemoPromo.html](docs/demo/DemoPromo.html), click **Download raw file** at the top right, and open the downloaded file in your browser)
+👉 **[Open the DemoPromo HTML view online](https://lkhwyy.github.io/slxtoolkit---simulink-read-write-mcp/demo/DemoPromo.html)** (or open [DemoPromo.html](docs/demo/DemoPromo.html), click **Download raw file** at the top right, and open the downloaded file in your browser)
 
 ### ④ Edit in one sentence, verify with a semantic diff
 
@@ -179,10 +179,10 @@ blocks moved   : 4
 
 | Your tool | Download | Install guide (Chinese) |
 |---|---|---|
-| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL-claude.md](release/claude/INSTALL-claude.md) |
-| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL-codex.md](release/codex/INSTALL-codex.md) |
-| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL-codebuddy.md](release/codebuddy/INSTALL-codebuddy.md) |
-| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL-qoder.md](release/qoder/INSTALL-qoder.md) |
+| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL-claude.md](release/claude/INSTALL-claude.md) |
+| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL-codex.md](release/codex/INSTALL-codex.md) |
+| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL-codebuddy.md](release/codebuddy/INSTALL-codebuddy.md) |
+| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL-qoder.md](release/qoder/INSTALL-qoder.md) |
 
 The four packages contain identically named folders, so **only the zip file name tells them apart**. Check it before you download.
 
@@ -226,10 +226,10 @@ The four packages contain identically named folders, so **only the zip file name
 
 ## Version & validity
 
-Current version **1.2.6**, built 2026-11-02, **valid until 2027-01-02**. After that date the plugin stops working and uninstalls itself once you quit your AI tool (see section 8 of your platform's install guide, `INSTALL-<platform>.md`). New builds are published under [Releases](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases).
+Current version **1.2.6**, built 2026-11-02, **valid until 2027-01-02**. After that date the plugin stops working and uninstalls itself once you quit your AI tool (see section 8 of your platform's install guide, `INSTALL-<platform>.md`). New builds are published under [Releases](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases).
 
 ## Feedback
 
-Please open an [Issue](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/issues). If installation fails, include the `SLX-INSTALL DIAGNOSTIC` block printed by the installer, or the `slx-install-*.log` file from the install folder.
+Please open an [Issue](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/issues). If installation fails, include the `SLX-INSTALL DIAGNOSTIC` block printed by the installer, or the `slx-install-*.log` file from the install folder.
 
 <sub>MATLAB® and Simulink® are registered trademarks of The MathWorks, Inc. This project is not affiliated with MathWorks.</sub>

@@ -4,7 +4,7 @@
 
 **不开 MATLAB，让 AI 读懂、建出、改好 Simulink 模型**
 
-[![Release](https://img.shields.io/github/v/release/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor?label=release)](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest)
+[![Release](https://img.shields.io/github/v/release/lkhwyy/slxtoolkit---simulink-read-write-mcp?label=release)](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011%20x64-0078d4)
 ![Hosts](https://img.shields.io/badge/hosts-Claude%20Code%20%7C%20Codex%20%7C%20CodeBuddy%20%7C%20Qoder-6f42c1)
 ![Python](https://img.shields.io/badge/Python-not%20required-success)
@@ -143,7 +143,7 @@ slxtoolkit 把 `.slx` 变成 AI 能读、能写的东西：你用自然语言提
   <br><sub>↑ 进入 ModeMgr：Idle / Run / Fault 三个子图，双击继续进入子图内部</sub>
 </p>
 
-👉 **[在线打开 DemoPromo 的 HTML 视图](https://lkhwyy.github.io/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/demo/DemoPromo.html)**（也可以打开 [DemoPromo.html](docs/demo/DemoPromo.html)，点右上角的 **Download raw file** 按钮下载到本地，再用浏览器打开）
+👉 **[在线打开 DemoPromo 的 HTML 视图](https://lkhwyy.github.io/slxtoolkit---simulink-read-write-mcp/demo/DemoPromo.html)**（也可以打开 [DemoPromo.html](docs/demo/DemoPromo.html)，点右上角的 **Download raw file** 按钮下载到本地，再用浏览器打开）
 
 ### ④ 一句话改模型，语义 diff 一眼看清
 
@@ -180,10 +180,10 @@ status: semantic: 3   semantic=3 noise=0
 
 | 你用的工具 | 下载 | 安装说明 |
 |---|---|---|
-| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL-claude.md](release/claude/INSTALL-claude.md) |
-| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL-codex.md](release/codex/INSTALL-codex.md) |
-| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL-codebuddy.md](release/codebuddy/INSTALL-codebuddy.md) |
-| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL-qoder.md](release/qoder/INSTALL-qoder.md) |
+| Claude Code | [slx-tools-claude.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-claude.zip) | [release/claude/INSTALL-claude.md](release/claude/INSTALL-claude.md) |
+| Codex | [slx-tools-codex.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-codex.zip) | [release/codex/INSTALL-codex.md](release/codex/INSTALL-codex.md) |
+| CodeBuddy | [slx-tools-codebuddy.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-codebuddy.zip) | [release/codebuddy/INSTALL-codebuddy.md](release/codebuddy/INSTALL-codebuddy.md) |
+| Qoder | [slx-tools-qoder.zip](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases/latest/download/slx-tools-qoder.zip) | [release/qoder/INSTALL-qoder.md](release/qoder/INSTALL-qoder.md) |
 
 四个包里的文件夹名相同，**只能靠 zip 文件名区分**，下载前请对一眼。
 
@@ -227,10 +227,10 @@ status: semantic: 3   semantic=3 noise=0
 
 ## 版本与有效期
 
-当前版本 **1.2.6**，构建日期 2026-11-02，**有效期至 2027-01-02**。到期后插件停止工作，并在你退出 AI 工具后自动卸载，详见对应平台安装说明（`INSTALL-<平台>.md`）第八节。新版本会发布在 [Releases](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/releases)。
+当前版本 **1.2.6**，构建日期 2026-11-02，**有效期至 2027-01-02**。到期后插件停止工作，并在你退出 AI 工具后自动卸载，详见对应平台安装说明（`INSTALL-<平台>.md`）第八节。新版本会发布在 [Releases](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/releases)。
 
 ## 反馈
 
-遇到问题请提交 [Issue](https://github.com/lkhwyy/slxtoolkit---A-MATLAB-Independent-Simulink-Model-Read-Write-Editor/issues)。安装失败时，请附上安装窗口打印的 `SLX-INSTALL DIAGNOSTIC` 一段，或者安装目录下的 `slx-install-*.log`。
+遇到问题请提交 [Issue](https://github.com/lkhwyy/slxtoolkit---simulink-read-write-mcp/issues)。安装失败时，请附上安装窗口打印的 `SLX-INSTALL DIAGNOSTIC` 一段，或者安装目录下的 `slx-install-*.log`。
 
 <sub>MATLAB® 和 Simulink® 是 The MathWorks, Inc. 的注册商标。本项目与 MathWorks 无关联。</sub>
